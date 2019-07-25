@@ -15,7 +15,26 @@ int main()
 			}
 		}
 	}
-	// 1. 입력 값을 받음 2. 입력 값을 두개의 소수로 분해함 3. 두개의 소수값의 합이 입력값과 같은지 확인
 
+	while (1)
+	{
+		int n;
+		cin >> n;
+
+		if (n == 0)
+			break;
+
+		bool ok = false;
+		for (int i = 3; i <= n/2; i++) 
+		{
+			if (!(num[i] || num[n - i])) {
+				cout << n << " = " << i << " + " << n-i << '\n';
+				ok = true;
+				break;
+			}
+		}
+		if (!ok)
+			cout << "Goldbach's conjecture is wrong." << '\n';
+	}
 	return 0;
 }
