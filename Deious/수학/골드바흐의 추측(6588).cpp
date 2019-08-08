@@ -19,22 +19,22 @@ int main()
 	while (1)
 	{
 		int n;
-		cin >> n;
+		scanf("%d", &n);
 
 		if (n == 0)
 			break;
 
 		bool ok = false;
-		for (int i = 3; i <= n/2; i++) 
+		for (int i = 3; i <= n / 2; i++)
 		{
 			if (!(num[i] || num[n - i])) {
-				cout << n << " = " << i << " + " << n-i << '\n';
+				printf("%d = %d + %d\n", n, i, n - i);
 				ok = true;
 				break;
 			}
 		}
 		if (!ok)
-			cout << "Goldbach's conjecture is wrong." << '\n';
+			printf("Goldbach's conjecture is wrong.\n");
 	}
 	return 0;
 }

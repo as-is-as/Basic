@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
 	int num;
-	int min = 1000000;
+	int min = 11000000;
 	cin >> num;
 
 	vector< vector<int> > v;
