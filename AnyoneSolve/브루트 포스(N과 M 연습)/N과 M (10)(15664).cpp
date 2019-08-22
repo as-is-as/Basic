@@ -36,7 +36,7 @@ void NumCount(int & N)
     num[tempIndex] = tempNum;
     N = tempIndex;
 }
-void GetResult(int N, int M, int index)
+void GetResult(int N, int M, int startIndex , int index)
 {
     if(M == index)
     {
@@ -47,13 +47,13 @@ void GetResult(int N, int M, int index)
         cout <<'\n';
     }
 
-    for(int i = 0; i < N + 1; ++i)
+    for(int i = startIndex; i < N + 1; ++i)
     {
         if(cnt[i] != 0)
         {
             cnt[i] -= 1;
             tempV.push_back(num[i]);
-            GetResult(N, M, index + 1);
+            GetResult(N, M, i, index + 1);
             tempV.pop_back();
             cnt[i] +=1;
         }
@@ -73,7 +73,7 @@ int main(void)
 
     sort(tempArray, tempArray + N);
     NumCount(N);
-    GetResult(N, M, 0);
+    GetResult(N, M, 0, 0);
 
     return 0;
 }
