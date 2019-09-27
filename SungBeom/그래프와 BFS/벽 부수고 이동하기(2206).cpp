@@ -3,9 +3,9 @@
 #include <tuple>
 using namespace std;
 
-int maze[100][100];
-int moveCount[100][100][2];
-bool check[100][100][2];
+int maze[1000][1000];
+int moveCount[1000][1000][2];
+bool check[1000][1000][2];
 
 int nx[] = { -1, 1, 0, 0 };
 int ny[] = { 0, 0, -1, 1 };
