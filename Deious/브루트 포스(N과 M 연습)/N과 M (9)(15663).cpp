@@ -1,45 +1,59 @@
 #include <iostream>
+#include <string>
 #include <vector>
+#include <set>
 #include <algorithm>
+
 using namespace std;
 
-vector<int> v(10);
+int N;
+vector<int> sequence;
+vector<bool> check;
+set<string> ans;
 
-void caculate(int index, int N, int M, vector<int> &v1)
+void caculate(vector<int>& nums, int index, int M)
 {
-	if (index == M)
+	if (M == 0)
 	{
-		for (int i = 0; i < M; i++)
+		string s = "";
+		for (int i = 0; i < nums.size(); i++)
 		{
-			cout << v[i] << " ";
+			s += to_string(nums[i]) + " ";
 		}
-		cout << '\n';
+		s += "\n";
+
+		pair<set<string> ::iterator, bool> pr = ans.insert(s);
+		if (pr.second) cout << s;
 		return;
 	}
+
 	for (int i = 0; i < N; i++)
 	{
-		v[index] = v1[i];
-		caculate(index + 1, N, M, v1);
+		if (check[i]) continue;
+
+		nums.push_back(sequence[i]);
+		check[i] = true;
+		caculate(nums, i, M - 1);
+		nums.pop_back();
+		check[i] = false;
 	}
 }
 
 int main()
 {
-	ios_base::sync_with_stdio(false);
-	int N, M;
+	int M;
 	cin >> N >> M;
-	vector<int> v1(N);
+	sequence.resize(N);
+	check.resize(N, false);
 
 	for (int i = 0; i < N; i++)
 	{
-		int a;
-		cin >> a;
-		v1[i] = a;
+		cin >> sequence[i];
 	}
-	sort(v1.begin(), v1.end());
-	v1.erase(unique(v1.begin(), v1.end()), v1.end());		// 2개가 있는것들은 남겨놔야되는데 다 한개씩 남겨버림
-	N = v1.size();
+	sort(sequence.begin(), sequence.end());
 
-	caculate(0, N, M, v1);
+	vector<int> nums;
+	caculate(nums, 0, M);
+
 	return 0;
 }
