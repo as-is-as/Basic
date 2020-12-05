@@ -63,7 +63,7 @@ int main()
 	long num = nums[0];
 	calcNum(num, operators, 0);
 
-	printf("%d\n%d\n", maxNum, minNum);
+	cout << maxNum << "\n" << minNum;
 
 	return 0;
 }
