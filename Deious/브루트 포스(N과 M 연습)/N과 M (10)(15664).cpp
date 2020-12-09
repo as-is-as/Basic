@@ -6,14 +6,14 @@
 
 using namespace std;
 
-int N;
-vector<int> sequence;
+int n;
+vector<int> v;
 vector<bool> check;
 set<string> ans;
 
-void caculate(vector<int>& nums, int index, int M)
+void caculate(vector<int>& nums, int index, int m)
 {
-	if (M == 0)
+	if (m == 0)
 	{
 		string s = "";
 		for (int i = 0; i < nums.size(); i++)
@@ -27,33 +27,34 @@ void caculate(vector<int>& nums, int index, int M)
 		return;
 	}
 
-	for (int i = index; i < N; i++)
+	for (int i = index; i < n; i++)
 	{
 		if (check[i]) continue;
 
-		nums.push_back(sequence[i]);
+		nums.push_back(v[i]);
 		check[i] = true;
-		caculate(nums, i, M - 1);
+		caculate(nums, i, m - 1);
 		nums.pop_back();
 		check[i] = false;
 	}
 }
 
-int main(void)
+int main()
 {
-	int M;
-	cin >> N >> M;
-	sequence.resize(N);
-	check.resize(N, false);
+	int m;
+	cin >> n >> m;
+	v.resize(n);
+	check.resize(n, false);
 
-	for (int i = 0; i < N; i++)
+	for (int i = 0; i < n; i++)
 	{
-		cin >> sequence[i];
+		cin >> v[i];
+		check[i] = false;
 	}
-	sort(sequence.begin(), sequence.end());
+	sort(v.begin(), v.end());
 
 	vector<int> nums;
-	caculate(nums, 0, M);
+	caculate(nums, 0, m);
 
 	return 0;
 }
